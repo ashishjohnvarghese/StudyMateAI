@@ -1,6 +1,22 @@
 StudyMate AI 📚
 
 StudyMate AI is a web-based study assistant built with Python and Django. It helps students study more efficiently by extracting text from PDF documents, generating concise summaries, and creating quizzes for revision.
+📸 Screenshots
+
+Homepage
+
+"StudyMate AI Homepage" (screenshots/homepage.png)
+
+PDF Summary
+
+"Generate Summary" (screenshots/summary-button.png)
+
+"Generated Summary Result" (screenshots/summary-result.png)
+
+Quiz Generator
+
+"StudyMate AI Quiz Generator" (screenshots/quiz.png)
+
 
 ✨ Features
 
