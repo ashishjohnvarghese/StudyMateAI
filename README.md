@@ -8,11 +8,11 @@ Homepage
 [StudyMate AI Homepage](screenshots/home2.png)
 
 Text Extraction
-[Extract Text](screenshots/text.png)
+[StudyMate AI Fuetures](screenshots/buttons.png)
+[StudyMate AI Extracted Text](screenshots/text.png)
 
 PDF Summary
-[Generate Summary](screenshots/button.png)
-[Generated Summary Result](screenshots/summary.png)
+[StudyMate AI Generated Summary Result](screenshots/summary.png)
 
 Quiz Generator
 [StudyMate AI Quiz Generator](screenshots/quiz.png)
