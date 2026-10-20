@@ -1,0 +1,1181 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#f7f8ff">
+    <title>StudyMate AI | Study Smarter</title>
+
+    <style>
+        :root {
+            --primary: #5846f5;
+            --primary-dark: #4232d5;
+            --navy: #172554;
+            --muted: #64748b;
+            --page: #f7f8ff;
+            --border: #e5e9f8;
+            --green: #16a879;
+            --purple: #9333ea;
+        }
+
+        * {
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+            scroll-padding-top: 90px;
+        }
+
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background: var(--page);
+            color: var(--navy);
+            line-height: 1.65;
+        }
+
+        button, input {
+            font: inherit;
+        }
+
+        a {
+            color: inherit;
+        }
+
+        button:focus-visible,
+        a:focus-visible,
+        input:focus-visible {
+            outline: 3px solid #a5b4fc;
+            outline-offset: 3px;
+        }
+
+        .navbar {
+            position: sticky;
+            top: 0;
+            z-index: 10;
+            padding: 16px 7%;
+            min-height: 70px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            gap: 20px;
+            background: rgba(255, 255, 255, 0.96);
+            border-bottom: 1px solid #edf0fa;
+            backdrop-filter: blur(12px);
+        }
+
+        .brand {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            text-decoration: none;
+            font-size: 23px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .brand-icon {
+            width: 40px;
+            height: 40px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            color: white;
+            background: linear-gradient(135deg, #6757ff, #8c5cff);
+            box-shadow: 0 5px 13px #5846f533;
+        }
+
+        .brand-name span {
+            color: var(--primary);
+        }
+
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 24px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #52617e;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        .nav-links a:hover {
+            color: var(--primary);
+        }
+
+        .hero {
+            padding: 75px 7%;
+            background:
+                radial-gradient(ellipse at 85% 30%, #dce5ff, transparent 42%),
+                linear-gradient(120deg, #f1f3ff, #fbfaff 65%, #edf3ff);
+        }
+
+        .hero-inner {
+            max-width: 1180px;
+            margin: auto;
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            align-items: center;
+            gap: 45px;
+        }
+
+        .eyebrow,
+        .section-label {
+            display: inline-block;
+            padding: 6px 12px;
+            border-radius: 30px;
+            color: var(--primary);
+            background: #eeecff;
+            font-size: 11px;
+            font-weight: 800;
+            letter-spacing: 0.8px;
+        }
+
+        .hero h1 {
+            margin: 22px 0 18px;
+            font-size: clamp(38px, 5vw, 62px);
+            line-height: 1.12;
+            letter-spacing: -1.8px;
+        }
+
+        .gradient-text {
+            color: var(--primary);
+        }
+
+        .hero-description {
+            max-width: 550px;
+            color: var(--muted);
+            font-size: 17px;
+            line-height: 1.9;
+        }
+
+        .hero-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 27px;
+        }
+
+        .btn {
+            display: inline-flex;
+            justify-content: center;
+            align-items: center;
+            gap: 8px;
+            padding: 13px 20px;
+            min-height: 46px;
+            border: 1px solid transparent;
+            border-radius: 11px;
+            font-size: 14px;
+            font-weight: 750;
+            text-decoration: none;
+            cursor: pointer;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .btn:hover {
+            transform: translateY(-2px);
+        }
+
+        .btn-primary {
+            background: linear-gradient(135deg, #5846f5, #7665ff);
+            color: white;
+            box-shadow: 0 7px 18px #5846f52e;
+        }
+
+        .btn-primary:hover {
+            background: var(--primary-dark);
+        }
+
+        .btn-outline {
+            color: var(--primary);
+            background: white;
+            border-color: #d8d5ff;
+        }
+
+        .hero-art {
+            min-height: 280px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-orb {
+            position: absolute;
+            width: 270px;
+            height: 270px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #dce3ff, #e9ddff);
+        }
+
+        .hero-book {
+            position: relative;
+            z-index: 1;
+            width: 190px;
+            height: 205px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            background: #ffffffdd;
+            border: 1px solid white;
+            border-radius: 28px;
+            box-shadow: 0 25px 50px #5144ad20;
+            transform: rotate(-4deg);
+        }
+
+        .book-icon {
+            font-size: 75px;
+        }
+
+        .book-label {
+            color: var(--primary);
+            font-weight: 800;
+        }
+
+        .floating-card {
+            position: absolute;
+            z-index: 2;
+            padding: 11px 14px;
+            border-radius: 12px;
+            background: white;
+            box-shadow: 0 10px 30px #27326e14;
+            font-size: 12px;
+            font-weight: 750;
+        }
+
+        .float-one {
+            top: 15px;
+            right: 0;
+            color: #2875df;
+        }
+
+        .float-two {
+            bottom: 20px;
+            left: 0;
+            color: #7c3aed;
+        }
+
+        .float-three {
+            right: 0;
+            bottom: 7px;
+            color: #07966b;
+        }
+
+        .container {
+            width: min(1120px, 88%);
+            margin: auto;
+        }
+
+        .features-section {
+            padding: 70px 0 60px;
+            background: white;
+        }
+
+        .section-heading {
+            text-align: center;
+            margin-bottom: 35px;
+        }
+
+        .section-heading h2 {
+            margin: 13px 0 8px;
+            font-size: clamp(25px, 3vw, 34px);
+            line-height: 1.3;
+            letter-spacing: -0.7px;
+        }
+
+        .section-heading p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 20px;
+        }
+
+        .feature-card {
+            padding: 26px;
+            background: white;
+            border: 1px solid var(--border);
+            border-radius: 18px;
+            transition: transform 0.2s, box-shadow 0.2s;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 12px 35px #27326e12;
+        }
+
+        .feature-icon {
+            width: 50px;
+            height: 50px;
+            display: grid;
+            place-items: center;
+            border-radius: 15px;
+            font-size: 24px;
+            margin-bottom: 15px;
+        }
+
+        .icon-blue {
+            background: #e8f1ff;
+        }
+
+        .icon-purple {
+            background: #f0e8ff;
+        }
+
+        .icon-green {
+            background: #e1f8ef;
+        }
+
+        .feature-card h3 {
+            margin: 0 0 8px;
+            font-size: 17px;
+        }
+
+        .feature-card p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 14px;
+            line-height: 1.8;
+        }
+
+        .workspace-section {
+            padding: 65px 0 75px;
+            background: linear-gradient(180deg, #fafaff, #f4f6ff);
+        }
+
+        .workspace {
+            padding: 32px;
+            display: grid;
+            grid-template-columns: 0.95fr 1.05fr;
+            gap: 32px;
+            border: 1px solid #dcdcff;
+            border-radius: 22px;
+            background: linear-gradient(135deg, white, #f6f6ff);
+            box-shadow: 0 14px 45px #343d8a0c;
+        }
+
+        .workspace h2 {
+            margin: 12px 0 7px;
+            font-size: 27px;
+            letter-spacing: -0.6px;
+        }
+
+        .muted {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .upload-box {
+            margin-top: 22px;
+            padding: 22px;
+            border: 2px dashed #c4c5ff;
+            border-radius: 15px;
+            background: #fafaff;
+            text-align: center;
+        }
+
+        .upload-symbol {
+            font-size: 37px;
+            line-height: 1.3;
+        }
+
+        .upload-box strong {
+            display: block;
+            margin: 8px 0 3px;
+            font-size: 14px;
+        }
+
+        .upload-box p {
+            margin: 0;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        input[type="file"] {
+            display: block;
+            width: 100%;
+            margin-top: 15px;
+            padding: 10px;
+            border: 1px solid #e0e5f3;
+            border-radius: 9px;
+            background: white;
+            color: #475569;
+            font-size: 12px;
+        }
+
+        .file-note {
+            margin-top: 12px;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .action-panel {
+            padding-left: 28px;
+            border-left: 1px solid #e1e3f7;
+        }
+
+        .action-panel h3 {
+            margin: 10px 0 17px;
+            font-size: 17px;
+        }
+
+        .action-button {
+            width: 100%;
+            min-height: 66px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 12px;
+            margin-bottom: 12px;
+            padding: 13px 15px;
+            border: none;
+            border-radius: 12px;
+            color: white;
+            text-align: left;
+            cursor: pointer;
+            transition: transform 0.2s, filter 0.2s;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            filter: brightness(1.06);
+        }
+
+        .action-blue {
+            background: linear-gradient(110deg, #4f46e5, #7770ff);
+        }
+
+        .action-green {
+            background: linear-gradient(110deg, #09996f, #31c99a);
+        }
+
+        .action-purple {
+            background: linear-gradient(110deg, #9333ea, #d946a8);
+        }
+
+        .action-left {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .action-icon {
+            width: 39px;
+            height: 39px;
+            flex-shrink: 0;
+            display: grid;
+            place-items: center;
+            border-radius: 11px;
+            background: #ffffff2b;
+            font-size: 19px;
+        }
+
+        .action-title {
+            display: block;
+            font-size: 14px;
+            font-weight: 800;
+        }
+
+        .action-description {
+            display: block;
+            margin-top: 2px;
+            font-size: 11px;
+            font-weight: 400;
+        }
+
+        .action-arrow {
+            font-size: 20px;
+        }
+
+        .results-section {
+            padding: 5px 0 75px;
+            background: #f4f6ff;
+        }
+
+        .results-grid {
+            display: grid;
+            grid-template-columns: 1.15fr 0.85fr;
+            gap: 20px;
+            align-items: start;
+        }
+
+        .results-column {
+            display: grid;
+            gap: 20px;
+            min-width: 0;
+        }
+
+        .result-card {
+            min-width: 0;
+            padding: 22px;
+            border: 1px solid var(--border);
+            border-radius: 17px;
+            background: white;
+            box-shadow: 0 5px 20px #17255406;
+            overflow-wrap: anywhere;
+        }
+
+        .result-header {
+            display: flex;
+            align-items: center;
+            gap: 11px;
+            margin-bottom: 16px;
+        }
+
+        .result-header h3 {
+            margin: 0;
+            font-size: 16px;
+        }
+
+        .result-header .feature-icon {
+            width: 40px;
+            height: 40px;
+            flex-shrink: 0;
+            margin: 0;
+            font-size: 19px;
+            border-radius: 12px;
+        }
+
+        .result-tag {
+            margin-left: auto;
+            padding: 4px 8px;
+            border-radius: 30px;
+            background: #f0efff;
+            color: var(--primary);
+            font-size: 10px;
+            font-weight: 800;
+            white-space: nowrap;
+        }
+
+        .result-content {
+            margin: 0;
+            padding: 15px;
+            border: 1px solid #e9edfa;
+            border-radius: 10px;
+            background: #fafbff;
+            color: #475569;
+            font-family: inherit;
+            font-size: 13px;
+            line-height: 1.85;
+            white-space: pre-wrap;
+            overflow-wrap: anywhere;
+        }
+
+        .quiz-question {
+            margin: 20px 0;
+            padding-bottom: 17px;
+            border-bottom: 1px solid #e9edfa;
+        }
+
+        .quiz-option {
+            display: block;
+            margin: 9px 0;
+            padding: 10px 12px;
+            border: 1px solid #e5e9f5;
+            border-radius: 9px;
+            background: white;
+            cursor: pointer;
+        }
+
+        .quiz-option:hover {
+            background: #f4f2ff;
+            border-color: #b8b0ff;
+        }
+
+        .quiz-option input {
+            margin-right: 8px;
+            accent-color: var(--primary);
+        }
+
+        .answer-feedback {
+            margin-top: 13px;
+            padding: 13px;
+            border: 1px solid #e4e8f5;
+            border-radius: 10px;
+            background: white;
+            font-size: 13px;
+            overflow-wrap: anywhere;
+        }
+
+        .answer-feedback p {
+            margin: 4px 0;
+        }
+
+        .feedback-correct {
+            border-left: 4px solid #16a879;
+        }
+
+        .feedback-incorrect {
+            border-left: 4px solid #ef6262;
+        }
+
+        .score-number {
+            color: var(--primary);
+            font-size: 38px;
+            font-weight: 850;
+        }
+
+        .score-note {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .error {
+            margin-top: 20px;
+            padding: 13px 15px;
+            border: 1px solid #fecaca;
+            border-radius: 10px;
+            background: #fff1f2;
+            color: #b91c1c;
+            font-size: 14px;
+        }
+
+        footer {
+            padding: 28px 7%;
+            background: #172554;
+            color: #dbe4ff;
+        }
+
+        .footer-inner {
+            max-width: 1120px;
+            margin: auto;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            gap: 18px;
+        }
+
+        footer .brand {
+            font-size: 19px;
+        }
+
+        footer .brand-icon {
+            width: 35px;
+            height: 35px;
+        }
+
+        footer p {
+            margin: 0;
+            color: #b7c4e5;
+            font-size: 12px;
+        }
+
+        @media (max-width: 850px) {
+            .hero-inner {
+                grid-template-columns: 1fr;
+                gap: 25px;
+            }
+
+            .hero-art {
+                min-height: 250px;
+            }
+
+            .hero-orb {
+                width: 230px;
+                height: 230px;
+            }
+
+            .feature-grid {
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+            }
+
+            .workspace {
+                grid-template-columns: 1fr;
+            }
+
+            .action-panel {
+                padding: 25px 0 0;
+                border-left: none;
+                border-top: 1px solid #e1e3f7;
+            }
+
+            .results-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        @media (max-width: 560px) {
+            .navbar {
+                padding: 13px 5%;
+            }
+
+            .brand {
+                font-size: 18px;
+            }
+
+            .brand-icon {
+                width: 34px;
+                height: 34px;
+            }
+
+            .nav-links {
+                gap: 12px;
+            }
+
+            .nav-links a {
+                font-size: 12px;
+            }
+
+            .nav-links a:last-child {
+                display: none;
+            }
+
+            .hero {
+                padding: 50px 6% 40px;
+            }
+
+            .hero h1 {
+                font-size: clamp(35px, 10vw, 46px);
+                letter-spacing: -1.3px;
+            }
+
+            .hero-description {
+                font-size: 15px;
+            }
+
+            .hero-art {
+                min-height: 220px;
+            }
+
+            .hero-book {
+                width: 155px;
+                height: 170px;
+            }
+
+            .book-icon {
+                font-size: 62px;
+            }
+
+            .hero-orb {
+                width: 200px;
+                height: 200px;
+            }
+
+            .floating-card {
+                padding: 9px 10px;
+                font-size: 10px;
+            }
+
+            .container {
+                width: 90%;
+            }
+
+            .features-section,
+            .workspace-section {
+                padding-top: 48px;
+            }
+
+            .feature-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .workspace {
+                padding: 21px 16px;
+                gap: 23px;
+            }
+
+            .workspace h2 {
+                font-size: 24px;
+            }
+
+            .upload-box {
+                padding: 18px 12px;
+            }
+
+            .action-button {
+                padding: 12px;
+            }
+
+            .result-card {
+                padding: 16px;
+            }
+
+            .result-header h3 {
+                font-size: 14px;
+            }
+
+            .result-tag {
+                font-size: 9px;
+                padding: 3px 6px;
+            }
+
+            .hero-actions .btn {
+                flex: 1;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            html {
+                scroll-behavior: auto;
+            }
+
+            *, *::before, *::after {
+                transition: none !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+
+    <nav class="navbar">
+        <a href="#" class="brand" aria-label="StudyMate AI home">
+            <span class="brand-icon">✦</span>
+            <span class="brand-name">StudyMate <span>AI</span></span>
+        </a>
+
+        <div class="nav-links">
+            <a href="#">Home</a>
+            <a href="#features">Features</a>
+            <a href="#upload">Start Learning ↗</a>
+        </div>
+    </nav>
+
+    <header class="hero">
+        <div class="hero-inner">
+            <div>
+                <span class="eyebrow">✦ LEARN SMARTER, NOT HARDER</span>
+
+                <h1>
+                    Your Personal<br>
+                    <span class="gradient-text">Study Assistant</span>
+                </h1>
+
+                <p class="hero-description">
+                    Turn your study materials into clear notes and
+                    practice questions. Make learning simpler,
+                    smarter, and more organized.
+                </p>
+
+                <div class="hero-actions">
+                    <a href="#upload" class="btn btn-primary">
+                        ↑ Get Started
+                    </a>
+                    <a href="#features" class="btn btn-outline">
+                        Explore Features →
+                    </a>
+                </div>
+            </div>
+
+            <div class="hero-art">
+                <div class="hero-orb"></div>
+                <div class="hero-book">
+                    <span class="book-icon">📚</span>
+                    <span class="book-label">Study smarter</span>
+                </div>
+                <div class="floating-card float-one">📄 Smart Notes</div>
+                <div class="floating-card float-two">🧠 Practice Quiz</div>
+                <div class="floating-card float-three">✓ Track Learning</div>
+            </div>
+        </div>
+    </header>
+
+    <section class="features-section" id="features">
+        <div class="container">
+            <div class="section-heading">
+                <span class="section-label">FEATURES</span>
+                <h2>Everything You Need to Study Better</h2>
+                <p>Useful tools to help you review and practise your study materials.</p>
+            </div>
+
+            <div class="feature-grid">
+                <article class="feature-card">
+                    <div class="feature-icon icon-blue">📄</div>
+                    <h3>Smart Summaries</h3>
+                    <p>Turn lengthy study materials into concise notes that are easier to review.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon icon-purple">🧠</div>
+                    <h3>Quiz Generator</h3>
+                    <p>Practise with multiple-choice questions generated from readable PDF text.</p>
+                </article>
+
+                <article class="feature-card">
+                    <div class="feature-icon icon-green">📚</div>
+                    <h3>PDF Text Extraction</h3>
+                    <p>Extract readable text from your study PDFs and review it easily.</p>
+                </article>
+            </div>
+        </div>
+    </section>
+
+    <section class="workspace-section" id="upload">
+        <div class="container">
+            <div class="section-heading">
+                <span class="section-label">YOUR STUDY WORKSPACE</span>
+                <h2>Let's Make Learning Easier</h2>
+                <p>Upload a PDF and choose the operation you need.</p>
+            </div>
+
+            <div class="workspace">
+
+                <!-- Both the file input and operation buttons belong to this form. -->
+                <form method="POST" enctype="multipart/form-data"
+                      id="upload-form">
+                    {% csrf_token %}
+
+                    <span class="section-label">STEP 01</span>
+                    <h2>Upload Your PDF</h2>
+                    <p class="muted">
+                        Choose a text-based PDF from your device.
+                    </p>
+
+                    <div class="upload-box">
+                        <div class="upload-symbol">☁️</div>
+                        <strong>Select your study material</strong>
+                        <p>Choose a PDF file from your device</p>
+
+                        <input
+                            type="file"
+                            name="pdf_file"
+                            id="pdf-file"
+                            accept=".pdf,application/pdf"
+                            aria-label="Choose a PDF file"
+                            required
+                        >
+                    </div>
+
+                    <p class="file-note">
+                        📎 PDF files only. Text-based PDFs work best.
+                    </p>
+
+                    <div class="action-panel">
+                        <span class="section-label">STEP 02</span>
+                        <h3>Choose an Action</h3>
+
+                        <button type="submit" name="action" value="extract"
+                                class="action-button action-blue">
+                            <span class="action-left">
+                                <span class="action-icon">📄</span>
+                                <span>
+                                    <span class="action-title">Extract PDF Text</span>
+                                    <span class="action-description">Read the text inside your PDF</span>
+                                </span>
+                            </span>
+                            <span class="action-arrow">→</span>
+                        </button>
+
+                        <button type="submit" name="action" value="summarize"
+                                class="action-button action-green">
+                            <span class="action-left">
+                                <span class="action-icon">📝</span>
+                                <span>
+                                    <span class="action-title">Generate Study Notes</span>
+                                    <span class="action-description">Create a shorter summary</span>
+                                </span>
+                            </span>
+                            <span class="action-arrow">→</span>
+                        </button>
+
+                        <button type="submit" name="action" value="generate_quiz"
+                                class="action-button action-purple">
+                            <span class="action-left">
+                                <span class="action-icon">🧠</span>
+                                <span>
+                                    <span class="action-title">Generate Quiz</span>
+                                    <span class="action-description">Test your knowledge with MCQs</span>
+                                </span>
+                            </span>
+                            <span class="action-arrow">→</span>
+                        </button>
+                    </div>
+                </form>
+
+                <div>
+                    <span class="section-label">YOUR PROGRESS</span>
+                    <h2>Study With Purpose</h2>
+                    <p class="muted">
+                        Extract your material, review the notes,
+                        and check your understanding with a quiz.
+                    </p>
+
+                    <div class="feature-card" style="margin-top: 20px;">
+                        <div class="feature-icon icon-blue">📝</div>
+                        <h3>Review Key Ideas</h3>
+                        <p>Use the summary to revise important points in your material.</p>
+                    </div>
+
+                    <div class="feature-card" style="margin-top: 15px;">
+                        <div class="feature-icon icon-purple">🎯</div>
+                        <h3>Test Your Knowledge</h3>
+                        <p>Complete a quiz and review the correct answers to learn from mistakes.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    {% if error or summary or extracted_text and show_extracted_text or quiz or score != None %}
+    <section class="results-section" id="results">
+        <div class="container">
+            <div class="section-heading">
+                <span class="section-label">YOUR RESULTS</span>
+                <h2>Your Study Session</h2>
+                <p>Your generated results appear here.</p>
+            </div>
+
+            {% if error %}
+                <div class="error" role="alert">⚠️ {{ error }}</div>
+            {% endif %}
+
+            <div class="results-grid" style="margin-top: 24px;">
+                <div class="results-column">
+
+                    {% if summary %}
+                        <article class="result-card">
+                            <div class="result-header">
+                                <div class="feature-icon icon-blue">📝</div>
+                                <h3>Your Study Notes</h3>
+                                <span class="result-tag">SUMMARY</span>
+                            </div>
+                            <pre class="result-content">{{ summary }}</pre>
+                        </article>
+                    {% endif %}
+
+                    {% if extracted_text and show_extracted_text %}
+                        <article class="result-card">
+                            <div class="result-header">
+                                <div class="feature-icon icon-green">📄</div>
+                                <h3>Extracted PDF Text</h3>
+                                <span class="result-tag">EXTRACTED</span>
+                            </div>
+                            <pre class="result-content">{{ extracted_text }}</pre>
+                        </article>
+                    {% endif %}
+
+                    {% if quiz %}
+                        <article class="result-card">
+                            <div class="result-header">
+                                <div class="feature-icon icon-purple">🧠</div>
+                                <h3>Your Practice Quiz</h3>
+                                <span class="result-tag">{{ quiz|length }} QUESTIONS</span>
+                            </div>
+
+                            <form method="POST">
+                                {% csrf_token %}
+                                <input type="hidden" name="action" value="check_quiz">
+
+                                {% for question in quiz %}
+                                    <div class="quiz-question">
+                                        <p>
+                                            <strong>{{ forloop.counter }}. {{ question.question }}</strong>
+                                        </p>
+
+                                        {% for option in question.options %}
+                                            <label class="quiz-option">
+                                                <input
+                                                    type="radio"
+                                                    name="answer_{{ forloop.parentloop.counter0 }}"
+                                                    value="{{ option }}"
+                                                    required
+                                                >
+                                                {{ option }}
+                                            </label>
+                                        {% endfor %}
+                                    </div>
+                                {% endfor %}
+
+                                <button type="submit" class="btn btn-primary">
+                                    Check My Score →
+                                </button>
+                            </form>
+                        </article>
+                    {% endif %}
+
+                </div>
+
+                <div class="results-column">
+
+                    {% if score != None %}
+                        <article class="result-card">
+                            <div class="result-header">
+                                <div class="feature-icon icon-green">🏆</div>
+                                <h3>Your Quiz Result</h3>
+                            </div>
+
+                            <div class="score-number">
+                                {{ score }} / {{ quiz|length }}
+                            </div>
+
+                            <p class="score-note">
+                                {% if score == quiz|length %}
+                                    Excellent work! You answered every question correctly.
+                                {% elif score > 0 %}
+                                    Good effort! Keep practising to improve your score.
+                                {% else %}
+                                    Keep learning and try again!
+                                {% endif %}
+                            </p>
+
+                            {% for result in quiz_results %}
+                                <div class="answer-feedback {% if result.is_correct %}feedback-correct{% else %}feedback-incorrect{% endif %}">
+                                    <p><strong>{{ forloop.counter }}. {{ result.question }}</strong></p>
+
+                                    {% if result.is_correct %}
+                                        <p>✅ Correct: {{ result.correct_answer }}</p>
+                                    {% else %}
+                                        <p>❌ Your answer: {{ result.selected_answer|default:"Not answered" }}</p>
+                                        <p>✅ Correct answer: {{ result.correct_answer }}</p>
+                                    {% endif %}
+                                </div>
+                            {% endfor %}
+                        </article>
+                    {% else %}
+                        <article class="result-card">
+                            <div class="result-header">
+                                <div class="feature-icon icon-purple">🎯</div>
+                                <h3>Ready to Practise?</h3>
+                            </div>
+                            <p class="muted">
+                                Generate a quiz from your PDF, answer the questions,
+                                and check your score.
+                            </p>
+                        </article>
+                    {% endif %}
+
+                    <article class="result-card">
+                        <div class="result-header">
+                            <div class="feature-icon icon-blue">💡</div>
+                            <h3>Study Tip</h3>
+                        </div>
+                        <p class="muted">
+                            Try summarizing a chapter first, then take a quiz
+                            to check what you've understood.
+                        </p>
+                    </article>
+
+                </div>
+            </div>
+        </div>
+    </section>
+    {% endif %}
+
+    <footer>
+        <div class="footer-inner">
+            <a href="#" class="brand">
+                <span class="brand-icon">✦</span>
+                <span class="brand-name" style="color: white;">
+                    StudyMate <span>AI</span>
+                </span>
+            </a>
+
+            <p>Built to make learning easier, one study session at a time.</p>
+            <p>Learn · Practise · Grow</p>
+        </div>
+    </footer>
+
+</body>
+</html>
